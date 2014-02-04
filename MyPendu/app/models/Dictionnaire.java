@@ -6,53 +6,60 @@ import java.util.ArrayList;
 
 import java.util.Random;
 
-class Dictionnaire 
+public class Dictionnaire 
 {
-  public String choisirMot() throws IOException
+  public String choisirMot(String chemin) throws IOException
   {
     //Initialisation des variables
     BufferedReader lecteurAvecBuffer=null;
     ArrayList<String> maListe = new ArrayList<String>();
     String ligne;
-    
+    String maValeur = "";
     //Lecture Fichier si OK
     try
     {
-  	 lecteurAvecBuffer = new BufferedReader(new FileReader("../../public/document/listmot.txt"));
-     
+      lecteurAvecBuffer = new BufferedReader(new FileReader(chemin));
+      //On enrichit la liste de tous les mots du fichiers  
+      while ((ligne = lecteurAvecBuffer.readLine())!=null){
+      maListe.add(ligne);
+      //System.out.println(ligne);
+      }
+
+      //On ferme le fichier ouvert en lecture
+      lecteurAvecBuffer.close();
+
+      //Random d'un nombre entre  0 et maListe.size() 
+      int min =0; 
+      int max= maListe.size();
+      Random r = new Random();
+      int valeur = min + r.nextInt(max - min);
+
+      
+      //on recupere un mot
+      maValeur= maListe.get(valeur);
+      //System.out.println(maValeur);
+    
     }
     //Sinon affiche erreur
     catch(FileNotFoundException exc)
     {
-  	 System.out.println("Erreur d'ouverture");
+     System.out.println("Erreur d'ouverture de fichier...");
     }
     
-    //On enrichit la liste de tous les mots du fichiers  
-    while ((ligne = lecteurAvecBuffer.readLine())!=null){
-      maListe.add(ligne);
-      //System.out.println(ligne);
-    }
-    
-    //On ferme le fichier ouvert en lecture
-    lecteurAvecBuffer.close();
-
-
-    //Random d'un nombre entre  0 et maListe.size() 
-    int min =0; 
-    int max= maListe.size();
-    Random r = new Random();
-    int valeur = min + r.nextInt(max - min);
-
-    
-    //on recupere un mot
-    String maValeur = maListe.get(valeur);
-    //System.out.println(maValeur);
-    
-
-
     return maValeur;
   }
 
+  /*public static void main(String[] args){
+    Dictionnaire d = new Dictionnaire();
+    String test;
+    try{
+      test=d.choisirMot("../../public/document/listmot.txt");
+      System.out.println(test);
+    }catch(IOException e){
+      System.out.println("erreur");
+    }
+
+  }*/
   
 
 }; 

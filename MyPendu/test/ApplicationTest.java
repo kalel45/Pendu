@@ -6,6 +6,9 @@ import java.util.Map;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.*;
 
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 import play.mvc.*;
 import play.test.*;
 import play.data.DynamicForm;
@@ -19,6 +22,13 @@ import static play.test.Helpers.*;
 import static org.fest.assertions.Assertions.*;
 
 
+import java.io.IOException;
+
+//import models.Dictionnaire;
+//import models.Mot;
+
+import java.lang.Runtime;
+
 /**
 *
 * Simple (JUnit) tests that can call all parts of a play app.
@@ -27,18 +37,23 @@ import static org.fest.assertions.Assertions.*;
 */
 public class ApplicationTest {
 
-    @Test
-    public void simpleCheck() {
-        int a = 1 + 1;
-        assertThat(a).isEqualTo(2);
+    void assert_Dictionnaire_choisirMot() throws IOException {
+        assertFalse(new Dictionnaire().choisirMot("public/document/listmot.txt").isEmpty());
     }
 
+    /**
+    Test Si la foction choisirMot retourne quelque chose de pas vide (Si elle n'est pas vide, c'est qu'elle a selectionné un mot du fichier listMot.txt)
+    **/
     @Test
-    public void renderTemplate() {
-        Content html = views.html.index.render("Your new application is ready.");
-        assertThat(contentType(html)).isEqualTo("text/html");
-        assertThat(contentAsString(html)).contains("Your new application is ready.");
+    public void choisirMot() {
+        try{
+            assert_Dictionnaire_choisirMot();
+        }
+        catch(IOException exc)
+        {
+            System.out.println("Erreur...");
+        }
     }
 
-
+  
 }

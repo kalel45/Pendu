@@ -21,7 +21,9 @@ import play.libs.F.*;
 import static play.test.Helpers.*;
 import static org.fest.assertions.Assertions.*;
 
-
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 //import models.Dictionnaire;
@@ -41,10 +43,51 @@ public class ApplicationTest {
         assertFalse(new Dictionnaire().choisirMot("public/document/listmot.txt").isEmpty());
     }*/
 
-    void assert_Constructeur_Mot(){
+    void assert_Dictionnaire_choisirMotV2() throws IOException {
+        //Initialisation des variables
+
+        Dictionnaire d = new Dictionnaire() ;            // On crée un objet Dictionnaire
+        String motChoisi;
+        motChoisi = d.choisirMot("public/document/listmot.txt") ;
+        boolean verif = false;
+        BufferedReader lecteurAvecBuffer=null;
+        ArrayList<String> maListe = new ArrayList<String>();
+        String ligne;
+       
+        //Lecture Fichier si OK
+        try
+        {
+            lecteurAvecBuffer = new BufferedReader(new FileReader("public/document/listmot.txt"));
+            //On enrichit la liste de tous les mots du fichiers  
+            while ((ligne = lecteurAvecBuffer.readLine())!=null){
+                maListe.add(ligne);
+                
+            }
+
+            //On ferme le fichier ouvert en lecture
+            lecteurAvecBuffer.close();
+
+            for (String s : maListe) {
+                if (motChoisi.compareTo(s) == 0 )
+                    verif = true;
+            }
+
+
+        }
+        //Sinon affiche erreur
+        catch(FileNotFoundException exc)
+        {
+            System.out.println("Erreur d'ouverture de fichier...");
+        }
+
+
+        assertTrue(verif);
+    }
+
+    /*void assert_Constructeur_Mot(){
         Mot m= new Mot("public/document/listmot.txt");
         assertFalse(m.getDevine().isEmpty());
-    }
+    }*/
 
     /**
     Test Si la foction choisirMot retourne quelque chose de pas vide (Si elle n'est pas vide, c'est qu'elle a selectionné un mot du fichier listMot.txt)
@@ -62,12 +105,27 @@ public class ApplicationTest {
     */
 
     /**
-    Test le constructeur de Mot => celui ci doit initialiser Mot.devine avec une ligne du fichier listmot.txt
+     Test renforcé sur la fonction choisir mot, nous testons cette fois, si la fonction choisir mot retourne bien un mot contenu dans le fichier listmot.txt
     **/
     @Test
+    public void choisirMotV2() {
+        try{
+            assert_Dictionnaire_choisirMotV2();
+        }
+        catch(IOException exc)
+        {
+            System.out.println("Erreur...");
+        }
+    }
+
+    
+    /**
+    Test le constructeur de Mot => celui ci doit initialiser Mot.devine avec une ligne du fichier listmot.txt
+    **/
+    /*@Test
     public void constMot() {
         assert_Constructeur_Mot();
-    }
+    }*/
 
 
   

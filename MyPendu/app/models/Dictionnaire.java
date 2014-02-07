@@ -5,9 +5,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import java.util.Random;
-
+             
 public class Dictionnaire 
 {
+
+
+  public Dictionnaire(){}
+
   public String choisirMot(String chemin) throws IOException
   {
     //Initialisation des variables

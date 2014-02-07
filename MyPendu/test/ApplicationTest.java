@@ -37,14 +37,19 @@ import java.lang.Runtime;
 */
 public class ApplicationTest {
 
-    void assert_Dictionnaire_choisirMot() throws IOException {
+    /*void assert_Dictionnaire_choisirMot() throws IOException {
         assertFalse(new Dictionnaire().choisirMot("public/document/listmot.txt").isEmpty());
+    }*/
+
+    void assert_Constructeur_Mot(){
+        Mot m= new Mot("public/document/listmot.txt");
+        assertFalse(m.getDevine().isEmpty());
     }
 
     /**
     Test Si la foction choisirMot retourne quelque chose de pas vide (Si elle n'est pas vide, c'est qu'elle a selectionné un mot du fichier listMot.txt)
     **/
-    @Test
+    /*@Test
     public void choisirMot() {
         try{
             assert_Dictionnaire_choisirMot();
@@ -54,6 +59,16 @@ public class ApplicationTest {
             System.out.println("Erreur...");
         }
     }
+    */
+
+    /**
+    Test le constructeur de Mot => celui ci doit initialiser Mot.devine avec une ligne du fichier listmot.txt
+    **/
+    @Test
+    public void constMot() {
+        assert_Constructeur_Mot();
+    }
+
 
   
 }

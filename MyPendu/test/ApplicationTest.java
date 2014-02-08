@@ -104,13 +104,9 @@ public class ApplicationTest {
         assertTrue(m.contientLettre(lettre));
     }*/
 
-    void assert_RendreVisibleLettre_Mot(char lettre){
+    /*void assert_RendreVisibleLettre_Mot(char lettre){
         Mot m= new Mot("public/document/listmot.txt");
-        /*m.setDevine(mot);
-        m.setNbTiretRestant(mot.length());
-        for (int j=0; j<mot.length() ; j++ ) {
-            m.setVisible(false); 
-        }*/
+        
         int cpt=0;
         String test= m.getDevine(); 
         for (int i=0; i<test.length(); i++ ) {
@@ -124,8 +120,15 @@ public class ApplicationTest {
         
         System.out.println("res: "+res+" | cpt: "+cpt+ " | tiret: "+m.getNbTiretRestant());
         assertTrue(m.getNbTiretRestant() == res);
-    }
+    }*/
 
+
+    void assert_VerifSaisie_Pendu(char lettre1, char lettre2){
+        Pendu p = new Pendu(5);
+        assertTrue(p.verifSaisie(lettre1));
+        
+        assertFalse(p.verifSaisie(lettre2));
+    }
 
 
 
@@ -175,14 +178,28 @@ public class ApplicationTest {
         assert_TiretRestant_Mot();
     }*/
     
+    /**
+    Test si une lettre donné pas l'utilisateur exisite dans le mot
+    **/
     /*@Test
     public void contientLettre() {
         assert_ContientLettre_Mot('a');
     }*/
     
-    @Test
+    /**
+    Test si le nombre de tiret lors de la partie
+    **/
+    /*@Test
     public void RendreVisibleLettre() {
         assert_RendreVisibleLettre_Mot('a');
+    }*/
+
+    /**
+    Test la saisie de l'utilisateur est une lettre.
+    **/
+    @Test
+    public void verifSaisie() {
+        assert_VerifSaisie_Pendu('a','7');
     }
 
 }

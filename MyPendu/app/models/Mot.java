@@ -66,7 +66,17 @@ public class Mot {
 		this.nbTiretRestant = nbTiretRestant;
 	}
 
-  public void afficher() {
+  	public void afficher() {
+  		for(int i=0; i<devine.length();i++) {           
+        	if (visible[i])                                
+            	System.out.print(devine.charAt(i)+" ");
+        	else
+            	System.out.print("_ ");
+      	}
+      	System.out.println();      
+  	}
 
-  }
+  	public boolean resteDesLettres()
+    { return nbTiretRestant>0 ; }
+
 }

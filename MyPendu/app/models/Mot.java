@@ -30,53 +30,58 @@ public class Mot {
       for(int i=0 ; i<visible.length ; i++)
       	visible[i]=false ;
       nbTiretRestant = devine.length();
-  	}
+    }
 
-  	public String getDevine() {
-		return devine;
-	}
-
-
-
-	public void setDevine(String devine) {
-		this.devine = devine;
-	}
+    public String getDevine() {
+      return devine;
+    }
 
 
 
-	public boolean[] getVisible() {
-		return visible;
-	}
+    public void setDevine(String devine) {
+      this.devine = devine;
+    }
 
 
 
-	public void setVisible(boolean[] visible) {
-		this.visible = visible;
-	}
+    public boolean[] getVisible() {
+      return visible;
+    }
 
 
 
-	public int getNbTiretRestant() {
-		return nbTiretRestant;
-	}
+    public void setVisible(boolean[] visible) {
+      this.visible = visible;
+    }
 
 
 
-	public void setNbTiretRestant(int nbTiretRestant) {
-		this.nbTiretRestant = nbTiretRestant;
-	}
+    public int getNbTiretRestant() {
+      return nbTiretRestant;
+    }
 
-  	public void afficher() {
-  		for(int i=0; i<devine.length();i++) {           
-        	if (visible[i])                                
-            	System.out.print(devine.charAt(i)+" ");
-        	else
-            	System.out.print("_ ");
-      	}
-      	System.out.println();      
-  	}
 
-  	public boolean resteDesLettres()
-    { return nbTiretRestant>0 ; }
+
+    public void setNbTiretRestant(int nbTiretRestant) {
+      this.nbTiretRestant = nbTiretRestant;
+    }
+
+    public void afficher() {
+      for(int i=0; i<devine.length();i++) {           
+       if (visible[i])                                
+         System.out.print(devine.charAt(i)+" ");
+       else
+         System.out.print("_ ");
+     }
+     System.out.println();      
+   }
+
+   public boolean resteDesLettres()
+   { return nbTiretRestant>0 ; }
+
+   public boolean contientLettre(char lettre)
+   {
+    return ( devine.indexOf(lettre, 0 ) >= 0 );
+   }
 
 }

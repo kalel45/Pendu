@@ -95,13 +95,35 @@ public class ApplicationTest {
         assertTrue(m.resteDesLettres());
     }*/
 
-    void assert_ContientLettre_Mot(char lettre){
+    /*void assert_ContientLettre_Mot(char lettre){
         Mot m= new Mot("public/document/listmot.txt");
         String test=m.getDevine();
         System.out.println("Mot à deviner: "+test);
         System.out.println("Lettre à tester: "+lettre);
         
         assertTrue(m.contientLettre(lettre));
+    }*/
+
+    void assert_RendreVisibleLettre_Mot(char lettre){
+        Mot m= new Mot("public/document/listmot.txt");
+        /*m.setDevine(mot);
+        m.setNbTiretRestant(mot.length());
+        for (int j=0; j<mot.length() ; j++ ) {
+            m.setVisible(false); 
+        }*/
+        int cpt=0;
+        String test= m.getDevine(); 
+        for (int i=0; i<test.length(); i++ ) {
+            if(test.charAt(i)== lettre)
+                cpt++;
+        }
+        int res;
+        res = test.length() - cpt;
+        m.rendreVisible(lettre);
+        System.out.println("Mot: "+test+" | Lettre: "+lettre);
+        
+        System.out.println("res: "+res+" | cpt: "+cpt+ " | tiret: "+m.getNbTiretRestant());
+        assertTrue(m.getNbTiretRestant() == res);
     }
 
 
@@ -153,10 +175,14 @@ public class ApplicationTest {
         assert_TiretRestant_Mot();
     }*/
     
-    @Test
+    /*@Test
     public void contientLettre() {
         assert_ContientLettre_Mot('a');
-    }
+    }*/
     
+    @Test
+    public void RendreVisibleLettre() {
+        assert_RendreVisibleLettre_Mot('a');
+    }
 
 }

@@ -90,9 +90,18 @@ public class ApplicationTest {
         assertFalse(m.getDevine().isEmpty());
     }*/
 
-    void assert_TiretRestant_Mot(){
+    /*void assert_TiretRestant_Mot(){
         Mot m= new Mot("public/document/listmot.txt");
         assertTrue(m.resteDesLettres());
+    }*/
+
+    void assert_ContientLettre_Mot(char lettre){
+        Mot m= new Mot("public/document/listmot.txt");
+        String test=m.getDevine();
+        System.out.println("Mot à deviner: "+test);
+        System.out.println("Lettre à tester: "+lettre);
+        
+        assertTrue(m.contientLettre(lettre));
     }
 
 
@@ -139,11 +148,15 @@ public class ApplicationTest {
     /**
     Test si le mot est trouvé ou pas
     **/
-    @Test
+    /*@Test
     public void TiretRestant() {
         assert_TiretRestant_Mot();
+    }*/
+    
+    @Test
+    public void contientLettre() {
+        assert_ContientLettre_Mot('a');
     }
-  
     
 
 }

@@ -39,11 +39,11 @@ import java.lang.Runtime;
 */
 public class ApplicationTest {
 
-    /*void assert_Dictionnaire_choisirMot() throws IOException {
+    void assert_Dictionnaire_choisirMot() throws IOException {
         assertFalse(new Dictionnaire().choisirMot("public/document/listmot.txt").isEmpty());
-    }*/
+    }
 
-    /*void assert_Dictionnaire_choisirMotV2() throws IOException {
+    void assert_Dictionnaire_choisirMotV2() throws IOException {
         //Initialisation des variables
 
         Dictionnaire d = new Dictionnaire() ;            // On crée un objet Dictionnaire
@@ -82,29 +82,29 @@ public class ApplicationTest {
 
 
         assertTrue(verif);
-    }*/
+    }
 
     
-    /*void assert_Constructeur_Mot(){
+    void assert_Constructeur_Mot(){
         Mot m= new Mot("public/document/listmot.txt");
         assertFalse(m.getDevine().isEmpty());
-    }*/
+    }
 
-    /*void assert_TiretRestant_Mot(){
+    void assert_TiretRestant_Mot(){
         Mot m= new Mot("public/document/listmot.txt");
         assertTrue(m.resteDesLettres());
-    }*/
+    }
 
-    /*void assert_ContientLettre_Mot(char lettre){
+    void assert_ContientLettre_Mot(char lettre){
         Mot m= new Mot("public/document/listmot.txt");
         String test=m.getDevine();
         System.out.println("Mot à deviner: "+test);
         System.out.println("Lettre à tester: "+lettre);
         
         assertTrue(m.contientLettre(lettre));
-    }*/
+    }
 
-    /*void assert_RendreVisibleLettre_Mot(char lettre){
+    void assert_RendreVisibleLettre_Mot(char lettre){
         Mot m= new Mot("public/document/listmot.txt");
         
         int cpt=0;
@@ -120,15 +120,15 @@ public class ApplicationTest {
         
         System.out.println("res: "+res+" | cpt: "+cpt+ " | tiret: "+m.getNbTiretRestant());
         assertTrue(m.getNbTiretRestant() == res);
-    }*/
+    }
 
 
-    /*void assert_VerifSaisie_Pendu(char lettre1, char lettre2){
+    void assert_VerifSaisie_Pendu(char lettre1, char lettre2){
         Pendu p = new Pendu(5);
         assertTrue(p.verifSaisie(lettre1));
         
         assertFalse(p.verifSaisie(lettre2));
-    }*/
+    }
 
     
 
@@ -137,7 +137,7 @@ public class ApplicationTest {
     /**
     Test Si la foction choisirMot retourne quelque chose de pas vide (Si elle n'est pas vide, c'est qu'elle a selectionné un mot du fichier listMot.txt)
     **/
-    /*@Test
+    @Test
     public void choisirMot() {
         try{
             assert_Dictionnaire_choisirMot();
@@ -147,12 +147,12 @@ public class ApplicationTest {
             System.out.println("Erreur...");
         }
     }
-    */
+    
 
     /**
      Test renforcé sur la fonction choisir mot, nous testons cette fois, si la fonction choisir mot retourne bien un mot contenu dans le fichier listmot.txt
     **/
-    /*@Test
+    @Test
     public void choisirMotV2() {
         try{
             assert_Dictionnaire_choisirMotV2();
@@ -161,47 +161,47 @@ public class ApplicationTest {
         {
             System.out.println("Erreur...");
         }
-    }*/
+    }
 
     
     /**
     Test le constructeur de Mot => celui ci doit initialiser Mot.devine avec une ligne du fichier listmot.txt
     **/
-    /*@Test
+    @Test
     public void constMot() {
         assert_Constructeur_Mot();
-    }*/
+    }
 
     /**
     Test si le mot est trouvé ou pas
     **/
-    /*@Test
+    @Test
     public void TiretRestant() {
         assert_TiretRestant_Mot();
-    }*/
+    }
     
     /**
     Test si une lettre donné pas l'utilisateur exisite dans le mot
     **/
-    /*@Test
+    @Test
     public void contientLettre() {
         assert_ContientLettre_Mot('a');
-    }*/
+    }
     
     /**
     Test si le nombre de tiret lors de la partie
     **/
-    /*@Test
+    @Test
     public void RendreVisibleLettre() {
         assert_RendreVisibleLettre_Mot('a');
-    }*/
+    }
 
     /**
     Test la saisie de l'utilisateur est une lettre.
     **/
-    /*@Test
+    @Test
     public void verifSaisie() {
         assert_VerifSaisie_Pendu('a','7');
-    }*/
+    }
 
 }

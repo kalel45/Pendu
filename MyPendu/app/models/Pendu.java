@@ -1,7 +1,9 @@
 import java.util.*;
-import javax.validation.*;
+import java.util.Scanner;
+import java.io.*;
+/*import javax.validation.*;
 import play.data.validation.Constraints.*;
-
+*/
 
 public class Pendu
 {
@@ -23,14 +25,17 @@ public class Pendu
 
     public void jouer()
     {
-        Mot mot = new Mot();     
+        Mot mot = new Mot("../../public/document/listmot.txt");     
         int nbErreur=0 ;         
         
         while ( nbErreur<maxNbErreur && mot.resteDesLettres() )     // On joue jusqu'à être pendu ou avoir trouvé le mot
         {
             mot.afficher();
-            char lettre = Stdin.readChar("Proposez une lettre > ") ;
-            if (p.verifSaisie(lettre)){
+            Scanner scan = new Scanner (System.in);
+            System.out.println("Proposez une lettre > ");
+            String saisie = scan.next();
+            char lettre = saisie.charAt(0);
+            if (verifSaisie(lettre)){
                 
                 if ( mot.contientLettre(lettre) ) 
                     mot.rendreVisible(lettre);  

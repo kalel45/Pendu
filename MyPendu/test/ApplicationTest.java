@@ -123,12 +123,14 @@ public class ApplicationTest {
     }*/
 
 
-    void assert_VerifSaisie_Pendu(char lettre1, char lettre2){
+    /*void assert_VerifSaisie_Pendu(char lettre1, char lettre2){
         Pendu p = new Pendu(5);
         assertTrue(p.verifSaisie(lettre1));
         
         assertFalse(p.verifSaisie(lettre2));
-    }
+    }*/
+
+    
 
 
 
@@ -197,9 +199,9 @@ public class ApplicationTest {
     /**
     Test la saisie de l'utilisateur est une lettre.
     **/
-    @Test
+    /*@Test
     public void verifSaisie() {
         assert_VerifSaisie_Pendu('a','7');
-    }
+    }*/
 
 }

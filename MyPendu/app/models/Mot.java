@@ -84,4 +84,14 @@ public class Mot {
     return ( devine.indexOf(lettre, 0 ) >= 0 );
    }
 
+   public void rendreVisible(char lettre)
+    {
+        for( int i=0 ; i<visible.length ; i++ )
+            if ( devine.charAt(i) == lettre && visible[i] == false ) {
+                visible[i] = true ;
+                nbTiretRestant -- ;
+            }
+     
+    }
+
 }

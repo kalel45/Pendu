@@ -11,6 +11,7 @@ public class Mot {
 	private String devine;
 	private boolean[] visible;
 	private int nbTiretRestant;
+  private String lettreDejaJoue;
 	
 	//  Constructeur
 
@@ -31,6 +32,7 @@ public class Mot {
       for(int i=0 ; i<visible.length ; i++)
       	visible[i]=false ;
       nbTiretRestant = devine.length();
+      lettreDejaJoue="";
     }
 
     public String getDevine() {
@@ -38,11 +40,19 @@ public class Mot {
     }
 
 
-
     public void setDevine(String devine) {
       this.devine = devine;
     }
 
+
+    
+    public String getlettreDejaJoue() {
+      return lettreDejaJoue;
+    }
+
+    public void setlettreDejaJoue(char l) {
+      this.lettreDejaJoue = this.lettreDejaJoue + l;
+    }
 
 
     public boolean[] getVisible() {

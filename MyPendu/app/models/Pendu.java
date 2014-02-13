@@ -20,6 +20,7 @@ public class Pendu
     // Méthodes
     
     public boolean verifSaisie(char saisie){
+        
         return Character.isLetter(saisie);
 
     }

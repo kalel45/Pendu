@@ -26,7 +26,7 @@ import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-//import models.Dictionnaire;
+import models.*;
 //import models.Mot;
 
 import java.lang.Runtime;
@@ -92,14 +92,16 @@ public class ApplicationTest {
 
     void assert_TiretRestant_Mot(){
         Mot m= new Mot("public/document/listmot.txt");
+        //System.out.println("Mot à deviner: "+m.getDevine());
+        //System.out.println("NbTiretRestant:"+m.getNbTiretRestant());
         assertTrue(m.resteDesLettres());
     }
 
     void assert_ContientLettre_Mot(char lettre){
         Mot m= new Mot("public/document/listmot.txt");
         String test=m.getDevine();
-        System.out.println("Mot à deviner: "+test);
-        System.out.println("Lettre à tester: "+lettre);
+        //System.out.println("Mot à deviner: "+test);
+        //System.out.println("Lettre à tester: "+lettre);
         
         assertTrue(m.contientLettre(lettre));
     }
@@ -116,9 +118,9 @@ public class ApplicationTest {
         int res;
         res = test.length() - cpt;
         m.rendreVisible(lettre);
-        System.out.println("Mot: "+test+" | Lettre: "+lettre);
+        //System.out.println("Mot: "+test+" | Lettre: "+lettre);
         
-        System.out.println("res: "+res+" | cpt: "+cpt+ " | tiret: "+m.getNbTiretRestant());
+        //System.out.println("res: "+res+" | cpt: "+cpt+ " | tiret: "+m.getNbTiretRestant());
         assertTrue(m.getNbTiretRestant() == res);
     }
 
@@ -185,7 +187,7 @@ public class ApplicationTest {
     **/
     @Test
     public void contientLettre() {
-        assert_ContientLettre_Mot('a');
+        assert_ContientLettre_Mot('b');
     }
     
     /**
@@ -193,7 +195,7 @@ public class ApplicationTest {
     **/
     @Test
     public void RendreVisibleLettre() {
-        assert_RendreVisibleLettre_Mot('a');
+        assert_RendreVisibleLettre_Mot('b');
     }
 
     /**
@@ -201,7 +203,7 @@ public class ApplicationTest {
     **/
     @Test
     public void verifSaisie() {
-        assert_VerifSaisie_Pendu('a','7');
+        assert_VerifSaisie_Pendu('b','7');
     }
 
 }

@@ -1,7 +1,85 @@
-@(message: String)
+@(lettreForm: Form[Application.Lettre], lettre: Char ,pendu: models.Pendu, mot: models.Mot)
+@import helper._
+@import helper.twitterBootstrap._
 
-@main("Welcome to Play") {
+    <h1>Jeu du Pendu</h1>
 
-    @play20.welcome(message, style = "Java")
+
+@main(title="Nouvelle partie"){
+
+	@*
+	@mot.getDevine()
+	@mot.getVisible()
+	*@
+
+	
+		
+		@if( pendu.getnbErreur() < pendu.getmaxNbErreur() && mot.resteDesLettres() ) {
+			<p>Mot à deviner: 
+			@for( i <- 0 to mot.getDevine().length() - 1 ) {
+				@if(mot.getVisible(i)){
+					 @mot.getDevine().charAt(i) 
+				}else{
+					_
+				}
+
+			}
+			</p>
+			
+			<br/><br/><br/><br/>
+
+			@form(action = routes.Application.index, args = 'id -> "lettreform") {
+	        
+		        @inputText(
+		            field = lettreForm("lettre"),
+		            args = '_label -> "Proposez une lettre", 'value -> "", 'size ->1
+
+		        )
+		        
+		        
+		        
+		        <p class="buttons">
+		            <input id="monSubmit" type="submit" value="Envoyer">
+		        <p>   
+	        }
+		     
+			@lettre
+
+			@if(pendu.verifSaisie(lettre)){
+	            @if(mot.contientLettre(lettre) ){ 
+	                @mot.rendreVisible(lettre)
+	                 <p>Bien joué</p>
+	            }else{
+	                @pendu.setnbErreur(pendu.getnbErreur() +1)
+	                <p>La lettre  n'est pas dans le mot</p>
+	            }
+	            }else{
+	                <p>Vous devez saisir uniquement un caractere alphabetique !!!</p>    
+	            }
+	    }else{
+			@if(mot.resteDesLettres()==false ) {
+        		<h3>Bravo vous avez gagné</h3>
+    		}
+
+    		@if(pendu.getnbErreur() == pendu.getmaxNbErreur() && mot.resteDesLettres()==true ) {
+        		<h3>Domage, vous etes pendu ! le mot était @mot.getDevine().</h3>
+    		}
+    	}   
+
+
+
 
 }
+
+<script type="text/javascript">
+	$( "#monSubmit" ).click(function() {
+         location.reload("/");
+	});
+</script>
+
+
+
+
+
+
+

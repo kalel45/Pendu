@@ -1,3 +1,4 @@
+package models;
 import java.io.IOException;
 import java.util.*;
 /*import javax.validation.*;
@@ -46,6 +47,10 @@ public class Mot {
 
     public boolean[] getVisible() {
       return visible;
+    }
+
+    public boolean getVisible(int i){
+      return visible[i];
     }
 
 

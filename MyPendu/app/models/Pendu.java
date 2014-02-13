@@ -1,3 +1,4 @@
+package models;
 import java.util.*;
 import java.util.Scanner;
 import java.io.*;
@@ -8,11 +9,12 @@ import play.data.validation.Constraints.*;
 public class Pendu
 {
     int maxNbErreur ;   // nombre d'erreurs autorisées
-    
+    int nbErreur;
     //  Constructeurs
     public Pendu( int maxNb )
     {
         maxNbErreur = maxNb ;
+        nbErreur=0;
     }
     
     // Méthodes
@@ -22,10 +24,23 @@ public class Pendu
 
     }
 
+    public void setnbErreur (int i){
+        nbErreur =i;
+    }
 
-    public void jouer()
+    public int getnbErreur(){
+        return nbErreur;
+    }
+    public int getmaxNbErreur(){
+        return maxNbErreur;
+    }
+
+
+
+
+    /*public void jouer()
     {
-        Mot mot = new Mot("../../public/document/listmot.txt");     
+        Mot mot = new Mot("public/document/listmot.txt");     
         int nbErreur=0 ;         
         
         while ( nbErreur<maxNbErreur && mot.resteDesLettres() )     // On joue jusqu'à être pendu ou avoir trouvé le mot
@@ -54,5 +69,5 @@ public class Pendu
         else
             System.out.println("Vous etes pendu!");
         
-    }
+    }*/
 }

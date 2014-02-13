@@ -2,7 +2,7 @@
 @import helper._
 @import helper.twitterBootstrap._
 
-    <h1>Jeu du Pendu</h1>
+
 
 
 @main(title="Nouvelle partie"){
@@ -15,19 +15,173 @@
 	
 		
 		@if( pendu.getnbErreur() < pendu.getmaxNbErreur() && mot.resteDesLettres() ) {
-			<p>Mot à deviner: 
-			@for( i <- 0 to mot.getDevine().length() - 1 ) {
-				@if(mot.getVisible(i)){
-					 @mot.getDevine().charAt(i) 
-				}else{
-					_
-				}
-
-			}
-			</p>
 			
-			<br/><br/><br/><br/>
+			
+			
 
+
+			<br/><br/><br/><br/>
+			
+		    
+
+	        @mot.setlettreDejaJoue(lettre)
+
+	        @mot.getlettreDejaJoue()
+			
+
+			@if(pendu.verifSaisie(lettre)){
+	            @if(mot.contientLettre(lettre) ){ 
+	                @mot.rendreVisible(lettre)
+	                 <p>Bien joué</p>
+	                 
+	            }else{
+	                @pendu.setnbErreur(pendu.getnbErreur() +1)
+	                <p>La lettre '@lettre' n'est pas dans le mot</p>
+
+	            }
+	            }else{
+	                <p>Vous devez saisir uniquement un caractere alphabetique !!!</p>    
+	            }
+	            <p>Mot à deviner: 
+						@for( i <- 0 to mot.getDevine().length() - 1 ) {
+							@if(mot.getVisible(i)){
+								 @mot.getDevine().charAt(i) 
+							}else{
+								_
+							}
+
+						}
+					</p>
+				
+				@if(pendu.getnbErreur() == 1){
+				<pre>============</pre>
+			}
+			@if(pendu.getnbErreur() == 2){<pre>
+				   ||  /      
+				   || /       
+				   ||/        
+				   ||        
+				   ||        
+				   ||
+				  /||
+				 //||
+				============
+			</pre>}
+			@if(pendu.getnbErreur() == 3){<pre>
+				,==========Y===
+				   ||  /      
+				   || /       
+				   ||/        
+				   ||        
+				   ||        
+				   ||
+				  /||
+				 //||
+				============
+		</pre>}
+
+			@if(pendu.getnbErreur() == 4){<pre>
+				,==========Y===
+				   ||  /      |
+				   || /       |
+				   ||/        O
+				   ||        
+				   ||        
+				   ||
+				  /||
+				 //||
+				============
+			</pre>}
+			@if(pendu.getnbErreur() == 5){<pre>
+				,==========Y===
+				   ||  /      |
+				   || /       |
+				   ||/        O
+				   ||         |
+				   ||         
+				   ||
+				  /||
+				 //||
+				============
+			</pre>}
+			@if(pendu.getnbErreur() == 6){<pre>
+				,==========Y===
+				   ||  /      |
+				   || /       |
+				   ||/        O
+				   ||        /|
+				   ||         
+				   ||
+				  /||
+				 //||
+				============
+			</pre>}
+			@if(pendu.getnbErreur() == 7){<pre>
+				,==========Y===
+				   ||  /      |
+				   || /       |
+				   ||/        O
+				   ||        /|\
+				   ||         
+				   ||
+				  /||
+				 //||
+				============
+			</pre>}
+			@if(pendu.getnbErreur() == 8){<pre>
+				,==========Y===
+				   ||  /      |
+				   || /       |
+				   ||/        O
+				   ||        /|\
+				   ||          \
+				   ||
+				  /||
+				 //||
+				============
+			</pre>}
+			@if(pendu.getnbErreur() == 9){<pre>
+				,==========Y===
+				   ||  /      |
+				   || /       |
+				   ||/        O
+				   ||        /|\
+				   ||        / \
+				   ||
+				  /||
+				 //||
+				============
+			</pre>}
+			@if(pendu.getnbErreur() == 10){<pre>
+				 ,==========Y===
+				   ||  /      |
+				   || /       |
+				   ||/        O
+				   ||        /|\
+				   ||        /|
+				   ||                          Ah ah, vous avez perdu! le mot était @mot.getDevine()
+				  /||                                 O
+				 //||                                /|\
+				============_________________________/ \ 
+
+			</pre>}
+
+			@if(mot.resteDesLettres()==false){<pre>
+				 ,==========Y===
+				   ||  /      |
+				   || /       |
+				   ||/        
+				   ||        
+				   ||        
+				   ||                          J'ai gagné je vais pas mourir aujourd'hui 
+				  /||                                 O
+				 //||                                /|\
+				============_________________________/ \ 
+
+			</pre>}
+
+
+			@if(pendu.getnbErreur() != 10 && mot.resteDesLettres()==true  ){
 			@form(action = routes.Application.index, args = 'id -> "lettreform") {
 	        
 		        @inputText(
@@ -42,29 +196,8 @@
 		            <input id="monSubmit" type="submit" value="Envoyer">
 		        <p>   
 	        }
-		     
-			@lettre
-
-			@if(pendu.verifSaisie(lettre)){
-	            @if(mot.contientLettre(lettre) ){ 
-	                @mot.rendreVisible(lettre)
-	                 <p>Bien joué</p>
-	            }else{
-	                @pendu.setnbErreur(pendu.getnbErreur() +1)
-	                <p>La lettre  n'est pas dans le mot</p>
-	            }
-	            }else{
-	                <p>Vous devez saisir uniquement un caractere alphabetique !!!</p>    
-	            }
-	    }else{
-			@if(mot.resteDesLettres()==false ) {
-        		<h3>Bravo vous avez gagné</h3>
-    		}
-
-    		@if(pendu.getnbErreur() == pendu.getmaxNbErreur() && mot.resteDesLettres()==true ) {
-        		<h3>Domage, vous etes pendu ! le mot était @mot.getDevine().</h3>
-    		}
-    	}   
+	        }
+	    } 
 
 
 

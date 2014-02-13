@@ -10,7 +10,7 @@ import views.html.*;
 public class Application extends Controller {
 
 	final static Mot mot = new Mot ("public/document/listmot.txt");
-    final static Pendu pendu = new Pendu (5);
+    final static Pendu pendu = new Pendu (10);
 
     public static class Lettre {
         @Required public char lettre;
